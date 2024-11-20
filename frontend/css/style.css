@@ -1,0 +1,31 @@
+header {
+  margin-bottom: 6rem;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  #course-form {
+    label {
+      margin-right: 10px;
+      width: 3rem;
+      text-align: left;
+      display: inline-block;  
+    }
+  
+    input {
+      margin-right: 5px;
+      width: 10rem;
+    }
+
+    #add-course-btn {
+      margin-top: 20px;
+    }
+  }
+}

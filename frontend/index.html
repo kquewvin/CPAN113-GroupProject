@@ -8,14 +8,20 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1>JSON Data Viewer</h1>
-			<div id="data-display"></div>
-			<button id="load-data">Load Data</button>
-			<form id="data-form">
-				<input type="text" id="name" placeholder="Name" required />
-				<input type="text" id="email" placeholder="Email" required />
-				<button type="submit">Add Data</button>
-			</form>
+      <header>
+        <h1>Course Scheduler</h1>
+      </header>
+      <main>
+        <form id="course-form">
+          <label for="course-code">Code: </label>
+          <input id="course-code" type="text"><br>
+          <label for="course-name">Name: </label>
+          <input id="course-name" type="text"><br>
+          <label for="course-time">Time: </label>
+          <input id="course-time" type="datetime-local"><br>
+          <button id="add-course-btn" type="submit">Add Course</button>
+        </form>
+      </main>
 		</div>
 		<script src="./js/script.js"></script>
 	</body>
