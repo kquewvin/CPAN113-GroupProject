@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JSON Web App</title>
+		<link rel="stylesheet" href="./css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>JSON Data Viewer</h1>
+			<div id="data-display"></div>
+			<button id="load-data">Load Data</button>
+			<form id="data-form">
+				<input type="text" id="name" placeholder="Name" required />
+				<input type="text" id="email" placeholder="Email" required />
+				<button type="submit">Add Data</button>
+			</form>
+		</div>
+		<script src="./js/script.js"></script>
+	</body>
 </html>
