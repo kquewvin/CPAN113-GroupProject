@@ -1,5 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 header {
   margin-bottom: 6rem;
+  border-bottom: solid 2px black;
+  padding: 20px;
 
   h1 {
     text-align: center;
@@ -11,10 +19,16 @@ main {
   justify-content: center;
   align-content: center;
 
+  fieldset legend {
+    margin-left: 20px;
+  }
+
   #course-form {
+    margin: 20px;
+
     label {
       margin-right: 10px;
-      width: 3rem;
+      width: 2rem;
       text-align: left;
       display: inline-block;  
     }
@@ -22,10 +36,20 @@ main {
     input {
       margin-right: 5px;
       width: 10rem;
+      margin-bottom: 10px;
     }
 
-    #add-course-btn {
-      margin-top: 20px;
+    .btn-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 10px;
+
+      #add-course-btn,
+      #reset-btn {
+        padding: 5px;
+        width: 85px;
+      }
     }
   }
 }

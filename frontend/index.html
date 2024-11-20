@@ -12,15 +12,23 @@
         <h1>Course Scheduler</h1>
       </header>
       <main>
-        <form id="course-form">
-          <label for="course-code">Code: </label>
-          <input id="course-code" type="text"><br>
-          <label for="course-name">Name: </label>
-          <input id="course-name" type="text"><br>
-          <label for="course-time">Time: </label>
-          <input id="course-time" type="datetime-local"><br>
-          <button id="add-course-btn" type="submit">Add Course</button>
-        </form>
+        <fieldset>
+          <legend>Add a course</legend>
+          <form id="course-form">
+            <label for="course-code">Code: </label>
+            <input id="course-code" type="text">
+            <label for="course-name">Name: </label>
+            <input id="course-name" type="text"><br>
+            <label for="course-start">Start: </label>
+            <input id="course-time" type="datetime-local">
+            <label for="course-end">End: </label>
+            <input id="course-end" type="datetime-local"><br>
+            <div class="btn-container">
+              <button id="add-course-btn" type="submit">Add Course</button>
+              <button id="reset-btn" type="reset">Reset</button>
+            </div>
+          </form>
+        </fieldset>
       </main>
 		</div>
 		<script src="./js/script.js"></script>
