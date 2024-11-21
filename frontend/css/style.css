@@ -23,7 +23,6 @@ main {
   margin: 0 auto;
 
   fieldset legend {
-
     margin-left: 20px;
   }
 
@@ -48,7 +47,7 @@ main {
   
     input {
       margin-right: 5px;
-      width: 10rem;
+      width: 12rem;
       margin-bottom: 10px;
     }
 
