@@ -5,11 +5,14 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
+// Middleware to serve static files (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname)));
+
 // Middleware to parse JSON data
 app.use(express.json());
 
-// Endpoint to get existing courses (optional)
-app.get("/data", (req, res) => {
+// Endpoint to get JSON data
+app.get("/backend/courses", (req, res) => {
 	fs.readFile("./courses.json", "utf8", (err, data) => {
 		if (err) {
 			res.status(500).send("Error reading data file");
@@ -20,11 +23,11 @@ app.get("/data", (req, res) => {
 });
 
 // Endpoint to save a new course
-app.post("/save-course", (req, res) => {
+app.post("/courses", (req, res) => {
 	const courseData = req.body;
 
 	// Read the existing data
-	fs.readFile("./courses.json", "utf8", (err, data) => {
+	fs.readFile("/courses.json", "utf8", (err, data) => {
 		if (err && err.code !== "ENOENT") {
 			res.status(500).send("Error reading data file");
 			return;
@@ -35,7 +38,7 @@ app.post("/save-course", (req, res) => {
 		courses.push(courseData);
 
 		// Write the updated courses back to the file
-		fs.writeFile("./courses.json", JSON.stringify(courses, null, 2), (err) => {
+		fs.writeFile("/courses.json", JSON.stringify(courses, null, 2), (err) => {
 			if (err) {
 				res.status(500).send("Error writing to data file");
 				return;
