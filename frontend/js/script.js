@@ -1,8 +1,8 @@
-document.getElementById("load-data").addEventListener("click", loadData);
-document.getElementById("data-form").addEventListener("submit", addData);
+document.getElementById("#add-course-btn").addEventListener("click", loadData);
+document.getElementById("course-form").addEventListener("submit", addData);
 
 async function loadData() {
-	const response = await fetch("/data");
+	const response = await fetch("./backend/data.json");
 	const data = await response.json();
 	const display = document.getElementById("data-display");
 	display.innerHTML = "";

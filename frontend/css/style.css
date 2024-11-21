@@ -16,12 +16,25 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
+  width: 500px;
+  margin: 0 auto;
 
   fieldset legend {
+
     margin-left: 20px;
   }
+
+  #data-display {
+    margin-bottom: 30px;
+    padding: 10px;
+    background: #e7e7e7;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 100px;
+}
 
   #course-form {
     margin: 20px;
