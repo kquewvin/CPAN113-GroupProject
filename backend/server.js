@@ -5,15 +5,12 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-// Middleware to serve static files (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname)));
-
-// Middleware to parse JSON bodies
+// Middleware to parse JSON data
 app.use(express.json());
 
-// Endpoint to get JSON data
+// Endpoint to get existing courses (optional)
 app.get("/data", (req, res) => {
-	fs.readFile("./data.json", "utf8", (err, data) => {
+	fs.readFile("./courses.json", "utf8", (err, data) => {
 		if (err) {
 			res.status(500).send("Error reading data file");
 			return;
@@ -22,27 +19,28 @@ app.get("/data", (req, res) => {
 	});
 });
 
-// Endpoint to update JSON data
-app.post("/update-data", (req, res) => {
-	const newData = req.body;
+// Endpoint to save a new course
+app.post("/save-course", (req, res) => {
+	const courseData = req.body;
 
 	// Read the existing data
-	fs.readFile("./data.json", "utf8", (err, data) => {
-		if (err) {
+	fs.readFile("./courses.json", "utf8", (err, data) => {
+		if (err && err.code !== "ENOENT") {
 			res.status(500).send("Error reading data file");
 			return;
 		}
 
-		// Update the data and write back to the file
-		const jsonData = JSON.parse(data);
-		jsonData.push(newData);
+		// Parse existing data or initialize as empty array
+		const courses = data ? JSON.parse(data) : [];
+		courses.push(courseData);
 
-		fs.writeFile("./data.json", JSON.stringify(jsonData, null, 2), (err) => {
+		// Write the updated courses back to the file
+		fs.writeFile("./courses.json", JSON.stringify(courses, null, 2), (err) => {
 			if (err) {
 				res.status(500).send("Error writing to data file");
 				return;
 			}
-			res.status(200).send("Data successfully updated!");
+			res.status(200).send("Course saved successfully!");
 		});
 	});
 });
