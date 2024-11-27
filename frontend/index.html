@@ -19,6 +19,7 @@
 
 					<label for="course-day">Day:</label>
 					<select id="course-day" required>
+            <option value="select">-- select --</option>
 						<option value="Monday">Monday</option>
 						<option value="Tuesday">Tuesday</option>
 						<option value="Wednesday">Wednesday</option>
@@ -32,16 +33,15 @@
 					<label for="end-time">End Time:</label>
 					<input type="time" id="end-time" required />
 
-                <button type="submit">Add Course</button>
-                <button type="Delete">Delete Course</button>
-                
-            </form>
-        </section>
-        <section>
-            <h2>Weekly Schedule</h2>
-            <div id="calendar" class="calendar"></div>
-        </section>
-    </main>
-    <script src="js/script.js"></script>
-</body>
+					<button type="submit">Add Course</button>
+					<button type="Delete">Delete Course</button>
+				</form>
+			</section>
+			<section>
+				<h2>Weekly Schedule</h2>
+				<div id="calendar" class="calendar"></div>
+			</section>
+		</main>
+		<script src="js/script.js"></script>
+	</body>
 </html>
