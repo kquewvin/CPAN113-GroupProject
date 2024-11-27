@@ -1,55 +1,69 @@
-* {
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 header {
-  margin-bottom: 6rem;
-  border-bottom: solid 2px black;
-  padding: 20px;
-
-  h1 {
-    text-align: center;
-  }
+  background-color: #001aff;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
 }
 
 main {
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input, select, button {
+  margin-top: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #2d24da;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005ff8;
+}
+
+.calendar {
   display: flex;
-  justify-content: center;
-  align-content: center;
+  gap: 10px;
+}
 
-  fieldset legend {
-    margin-left: 20px;
-  }
+.day-column {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
 
-  #course-form {
-    margin: 20px;
+.day-column h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
 
-    label {
-      margin-right: 10px;
-      width: 2rem;
-      text-align: left;
-      display: inline-block;  
-    }
-  
-    input {
-      margin-right: 5px;
-      width: 10rem;
-      margin-bottom: 10px;
-    }
-
-    .btn-container {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin-top: 10px;
-
-      #add-course-btn,
-      #reset-btn {
-        padding: 5px;
-        width: 85px;
-      }
-    }
-  }
+.course-block {
+  background-color: #0db413;
+  color: white;
+  margin: 5px 0;
+  padding: 5px;
+  text-align: center;
 }
