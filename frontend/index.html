@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Schedule</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Weekly Schedule</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Add a Course</h2>
-            <form id="add-course-form">
-                <label for="course-name">Course Name:</label>
-                <input type="text" id="course-name" required>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Weekly Schedule</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Weekly Schedule</h1>
+		</header>
+		<main>
+			<section>
+				<h2>Add a Course</h2>
+				<form id="add-course-form">
+					<label for="course-name">Course Name:</label>
+					<input type="text" id="course-name" required />
 
-                <label for="course-day">Day:</label>
-                <select id="course-day" required>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                </select>
+					<label for="course-day">Day:</label>
+					<select id="course-day" required>
+						<option value="Monday">Monday</option>
+						<option value="Tuesday">Tuesday</option>
+						<option value="Wednesday">Wednesday</option>
+						<option value="Thursday">Thursday</option>
+						<option value="Friday">Friday</option>
+					</select>
 
-                <label for="start-time">Start Time:</label>
-                <input type="time" id="start-time" required>
+					<label for="start-time">Start Time:</label>
+					<input type="time" id="start-time" required />
 
-                <label for="end-time">End Time:</label>
-                <input type="time" id="end-time" required>
+					<label for="end-time">End Time:</label>
+					<input type="time" id="end-time" required />
 
-                <button type="submit">Add Course</button>
-            </form>
-        </section>
-        <section>
-            <h2>Weekly Schedule</h2>
-            <div id="calendar" class="calendar"></div>
-        </section>
-    </main>
-    <script src="js/script.js"></script>
-</body>
+					<button type="submit">Add Course</button>
+				</form>
+			</section>
+			<section>
+				<h2>Weekly Schedule</h2>
+				<div id="calendar" class="calendar"></div>
+			</section>
+		</main>
+		<script src="js/script.js"></script>
+	</body>
 </html>
