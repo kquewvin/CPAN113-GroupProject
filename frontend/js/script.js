@@ -46,7 +46,16 @@ function updateCalendar() {
 		calendar.appendChild(dayColumn);
 	});
 }
+function deleteCourse(index) {
+    courses.splice(index, 1);
+    updateScheduleDisplay();
+    saveCourses();
 
+const deleteButton = document.createElement('button');
+	deleteButton.textContent = 'Delete';
+	deleteButton.onclick = () => deleteCourse(index);
+	row.insertCell(3).appendChild(deleteButton);
+}
 // Event listener for adding a course
 addCourseForm.addEventListener("submit", (e) => {
 	e.preventDefault();
@@ -67,6 +76,9 @@ addCourseForm.addEventListener("submit", (e) => {
 	saveSchedule(); // Save updated schedule to localStorage
 	updateCalendar();
 	addCourseForm.reset();
+
+	
+
 });
 
 // Initialize calendar
