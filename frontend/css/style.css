@@ -143,6 +143,10 @@ button:hover {
   padding: 20px;
   z-index: 10;
   width: 300px;
+
+  #edit-end-time, #edit-start-time {
+    width: 280px;
+  }
 }
 
 .modal-content button {
