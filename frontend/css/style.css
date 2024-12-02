@@ -35,6 +35,18 @@ form {
   }
 }
 
+#course-day {
+  color: grey;
+
+  option {
+    color: black;
+  }
+
+  &:valid {
+    color: black;
+  }
+}
+
 label {
   display: block;
   margin-top: 10px;
