@@ -68,7 +68,6 @@ function updateCalendar() {
 				const editButton = courseBlock.querySelector(".edit-btn");
 				editButton.addEventListener("click", () => {
 					courseToEdit = course;
-					document.getElementById("edit-course-name").value = course.name;
 					document.getElementById("edit-start-time").value = course.startTime;
 					document.getElementById("edit-end-time").value = course.endTime;
 					editModal.style.display = "block";
@@ -124,13 +123,11 @@ cancelDeleteButton.addEventListener("click", () => {
 
 // Save edited course
 saveEditButton.addEventListener("click", () => {
-	const newCourseName = document.getElementById("edit-course-name").value;
 	const newStartTime = document.getElementById("edit-start-time").value;
 	const newEndTime = document.getElementById("edit-end-time").value;
 
 	const updatedCourse = {
 		...courseToEdit,
-		courseName: newCourseName,
 		startTime: newStartTime,
 		endTime: newEndTime,
 	};
@@ -139,7 +136,6 @@ saveEditButton.addEventListener("click", () => {
 		alert("This course overlaps with an existing one!");
 		return;
 	}
-	courseToEdit.courseName = newCourseName;
 	courseToEdit.startTime = newStartTime;
 	courseToEdit.endTime = newEndTime;
 	saveSchedule();
