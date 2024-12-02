@@ -105,6 +105,7 @@ addCourseForm.addEventListener("submit", (e) => {
 	saveSchedule();
 	updateCalendar();
 	addCourseForm.reset();
+  document.getElementById("course-name").focus()
 });
 
 // Confirm deletion
@@ -113,12 +114,14 @@ confirmDeleteButton.addEventListener("click", () => {
 	saveSchedule();
 	updateCalendar();
 	deleteModal.style.display = "none";
+  document.getElementById("course-name").focus()
 });
 
 // Cancel deletion
 cancelDeleteButton.addEventListener("click", () => {
 	courseToDelete = null;
 	deleteModal.style.display = "none";
+  document.getElementById("course-name").focus()
 });
 
 // Save edited course
@@ -145,13 +148,19 @@ saveEditButton.addEventListener("click", () => {
 	saveSchedule();
 	updateCalendar();
 	editModal.style.display = "none";
+  document.getElementById("course-name").focus()
 });
 
 // Cancel editing
 cancelEditButton.addEventListener("click", () => {
 	courseToEdit = null;
 	editModal.style.display = "none";
+  document.getElementById("course-name").focus()
 });
 
 // Initialize calendar
 updateCalendar();
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("course-name").focus()
+})
