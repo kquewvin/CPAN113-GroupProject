@@ -1,8 +1,13 @@
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.cen {
+  text-align: center;
 }
 
 header {
@@ -16,8 +21,14 @@ main {
   padding: 20px;
 }
 
+/* Form Styles */
 form {
-  margin-bottom: 20px;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f3f3f3;
 }
 
 label {
@@ -25,45 +36,120 @@ label {
   margin-top: 10px;
 }
 
-input, select, button {
-  margin-top: 5px;
-  padding: 5px;
+input,
+select,
+button {
+  margin-top: 10px;
+  padding: 10px;
   width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button {
-  background-color: #2d24da;
+  background-color: #005ff8;
   color: white;
-  border: none;
-  padding: 10px;
+  font-weight: bold;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #005ff8;
+  background-color: #0043c8;
 }
 
+/* Calendar Styles */
 .calendar {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .day-column {
-  flex: 1;
   border: 1px solid #ddd;
   padding: 10px;
   background-color: #f9f9f9;
+  min-width: 200px;
+  border-radius: 5px;
 }
 
 .day-column h3 {
   text-align: center;
   margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
 }
 
 .course-block {
   background-color: #0db413;
   color: white;
-  margin: 5px 0;
-  padding: 5px;
+  margin: 10px 0;
+  padding: 10px;
   text-align: center;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Delete and Edit Buttons Styling */
+.course-block button {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.course-block button.edit-btn {
+  background-color: #005ff8;
+}
+
+.course-block button:hover {
+  opacity: 0.9;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 10;
+  width: 300px;
+}
+
+.modal-content button {
+  margin: 10px 5px 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-content button#save-edit {
+  background-color: #005ff8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal-content button#cancel-edit {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal-content button:hover {
+  opacity: 0.9;
 }

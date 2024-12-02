@@ -1,20 +1,32 @@
+// Initialize schedule array from localStorage or as an empty array
 let schedule = JSON.parse(localStorage.getItem("schedule")) || [];
 
 // DOM Elements
 const addCourseForm = document.getElementById("add-course-form");
 const calendar = document.getElementById("calendar");
+const deleteModal = document.getElementById("delete-modal");
+const editModal = document.getElementById("edit-modal");
+const confirmDeleteButton = document.getElementById("confirm-delete");
+const cancelDeleteButton = document.getElementById("cancel-delete");
+const saveEditButton = document.getElementById("save-edit");
+const cancelEditButton = document.getElementById("cancel-edit");
 
 // Days of the week
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-// Function to save schedule to localStorage
+// Variables to hold the course being edited or deleted
+let courseToDelete = null;
+let courseToEdit = null;
+
+// Save schedule to localStorage
 function saveSchedule() {
 	localStorage.setItem("schedule", JSON.stringify(schedule));
 }
 
-// Function to check for overlapping courses
-function isOverlapping(newCourse) {
+// Check for overlapping courses
+function isOverlapping(newCourse, ignoreCourse = null) {
 	return schedule.some((course) => {
+		if (course === ignoreCourse) return false; // Ignore the course being edited
 		return (
 			course.day === newCourse.day &&
 			((newCourse.startTime >= course.startTime &&
@@ -25,7 +37,7 @@ function isOverlapping(newCourse) {
 	});
 }
 
-// Function to update the calendar
+// Update the calendar
 function updateCalendar() {
 	calendar.innerHTML = "";
 
@@ -39,31 +51,49 @@ function updateCalendar() {
 			.forEach((course) => {
 				const courseBlock = document.createElement("div");
 				courseBlock.classList.add("course-block");
-				courseBlock.textContent = `${course.name} (${course.startTime} - ${course.endTime})`;
+				courseBlock.innerHTML = `
+                        <span>${course.name} (${course.startTime} - ${course.endTime})</span>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">X</button>
+                    `;
+
+				// Delete functionality
+				const deleteButton = courseBlock.querySelector(".delete-btn");
+				deleteButton.addEventListener("click", () => {
+					courseToDelete = course;
+					deleteModal.style.display = "block";
+				});
+
+				// Edit functionality
+				const editButton = courseBlock.querySelector(".edit-btn");
+				editButton.addEventListener("click", () => {
+					courseToEdit = course;
+					document.getElementById("edit-course-name").value = course.name;
+					document.getElementById("edit-start-time").value = course.startTime;
+					document.getElementById("edit-end-time").value = course.endTime;
+					editModal.style.display = "block";
+				});
+
 				dayColumn.appendChild(courseBlock);
 			});
 
 		calendar.appendChild(dayColumn);
 	});
 }
-function deleteCourse(index) {
-    courses.splice(index, 1);
-    updateScheduleDisplay();
-    saveCourses();
 
-const deleteButton = document.createElement('button');
-	deleteButton.textContent = 'Delete';
-	deleteButton.onclick = () => deleteCourse(index);
-	row.insertCell(3).appendChild(deleteButton);
-}
-// Event listener for adding a course
+// Add a course
 addCourseForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 
-	const courseName = document.getElementById("course-name").value;
+	const courseName = document.getElementById("course-name").value.trim();
 	const courseDay = document.getElementById("course-day").value;
 	const startTime = document.getElementById("start-time").value;
 	const endTime = document.getElementById("end-time").value;
+
+	if (!courseName) {
+		alert("Course name cannot be empty!");
+		return;
+	}
 
 	const newCourse = { name: courseName, day: courseDay, startTime, endTime };
 
@@ -73,12 +103,54 @@ addCourseForm.addEventListener("submit", (e) => {
 	}
 
 	schedule.push(newCourse);
-	saveSchedule(); // Save updated schedule to localStorage
+	saveSchedule();
 	updateCalendar();
 	addCourseForm.reset();
+});
 
-	
+// Confirm deletion
+confirmDeleteButton.addEventListener("click", () => {
+	schedule = schedule.filter((course) => course !== courseToDelete);
+	saveSchedule();
+	updateCalendar();
+	deleteModal.style.display = "none";
+});
 
+// Cancel deletion
+cancelDeleteButton.addEventListener("click", () => {
+	courseToDelete = null;
+	deleteModal.style.display = "none";
+});
+
+// Save edited course
+saveEditButton.addEventListener("click", () => {
+	const newCourseName = document.getElementById("edit-course-name").value;
+	const newStartTime = document.getElementById("edit-start-time").value;
+	const newEndTime = document.getElementById("edit-end-time").value;
+
+	const updatedCourse = {
+		...courseToEdit,
+		courseName: newCourseName,
+		startTime: newStartTime,
+		endTime: newEndTime,
+	};
+
+	if (isOverlapping(updatedCourse, courseToEdit)) {
+		alert("This course overlaps with an existing one!");
+		return;
+	}
+	courseToEdit.courseName = newCourseName;
+	courseToEdit.startTime = newStartTime;
+	courseToEdit.endTime = newEndTime;
+	saveSchedule();
+	updateCalendar();
+	editModal.style.display = "none";
+});
+
+// Cancel editing
+cancelEditButton.addEventListener("click", () => {
+	courseToEdit = null;
+	editModal.style.display = "none";
 });
 
 // Initialize calendar
