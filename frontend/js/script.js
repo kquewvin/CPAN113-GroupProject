@@ -52,9 +52,10 @@ function updateCalendar() {
 				const courseBlock = document.createElement("div");
 				courseBlock.classList.add("course-block");
 				courseBlock.innerHTML = `
-                        <span>${course.name} (${course.startTime} - ${course.endTime})</span>
+                        <span>${course.name}<br>(${course.startTime} - ${course.endTime})</span>
+                        <div>
                         <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">X</button>
+                        <button class="delete-btn">X</button></div>
                     `;
 
 				// Delete functionality
@@ -105,7 +106,7 @@ addCourseForm.addEventListener("submit", (e) => {
 	saveSchedule();
 	updateCalendar();
 	addCourseForm.reset();
-  document.getElementById("course-name").focus()
+	document.getElementById("course-name").focus();
 });
 
 // Confirm deletion
@@ -114,26 +115,26 @@ confirmDeleteButton.addEventListener("click", () => {
 	saveSchedule();
 	updateCalendar();
 	deleteModal.style.display = "none";
-  document.getElementById("course-name").focus()
+	document.getElementById("course-name").focus();
 });
 
 // Cancel deletion
 cancelDeleteButton.addEventListener("click", () => {
 	courseToDelete = null;
 	deleteModal.style.display = "none";
-  document.getElementById("course-name").focus()
+	document.getElementById("course-name").focus();
 });
 
 // Save edited course
 saveEditButton.addEventListener("click", () => {
-  const newDay = document.getElementById("edit-course-day").value;
+	const newDay = document.getElementById("edit-course-day").value;
 	const newStartTime = document.getElementById("edit-start-time").value;
 	const newEndTime = document.getElementById("edit-end-time").value;
 
-  // Updated course info
+	// Updated course info
 	const updatedCourse = {
 		...courseToEdit,
-    day: newDay,
+		day: newDay,
 		startTime: newStartTime,
 		endTime: newEndTime,
 	};
@@ -142,25 +143,25 @@ saveEditButton.addEventListener("click", () => {
 		alert("This course overlaps with an existing one!");
 		return;
 	}
-  courseToEdit.day = newDay;
+	courseToEdit.day = newDay;
 	courseToEdit.startTime = newStartTime;
 	courseToEdit.endTime = newEndTime;
 	saveSchedule();
 	updateCalendar();
 	editModal.style.display = "none";
-  document.getElementById("course-name").focus()
+	document.getElementById("course-name").focus();
 });
 
 // Cancel editing
 cancelEditButton.addEventListener("click", () => {
 	courseToEdit = null;
 	editModal.style.display = "none";
-  document.getElementById("course-name").focus()
+	document.getElementById("course-name").focus();
 });
 
 // Initialize calendar
 updateCalendar();
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("course-name").focus()
-})
+	document.getElementById("course-name").focus();
+});
