@@ -123,11 +123,14 @@ cancelDeleteButton.addEventListener("click", () => {
 
 // Save edited course
 saveEditButton.addEventListener("click", () => {
+  const newDay = document.getElementById("edit-course-day").value;
 	const newStartTime = document.getElementById("edit-start-time").value;
 	const newEndTime = document.getElementById("edit-end-time").value;
 
+  // Updated course info
 	const updatedCourse = {
 		...courseToEdit,
+    day: newDay,
 		startTime: newStartTime,
 		endTime: newEndTime,
 	};
@@ -136,6 +139,7 @@ saveEditButton.addEventListener("click", () => {
 		alert("This course overlaps with an existing one!");
 		return;
 	}
+  courseToEdit.day = newDay;
 	courseToEdit.startTime = newStartTime;
 	courseToEdit.endTime = newEndTime;
 	saveSchedule();
