@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Weekly Schedule</title>
-		<link rel="stylesheet" href="css/style.css" />
+		<title>Interactive Weekly Schedule</title>
+		<link rel="stylesheet" href="/frontend/css/style.css" />
 	</head>
 	<body>
 		<header>
@@ -12,14 +12,21 @@
 		</header>
 		<main>
 			<section>
-				<h2>Add a Course</h2>
+				<h2 class="cen">Add a Course</h2>
 				<form id="add-course-form">
 					<label for="course-name">Course Name:</label>
-					<input type="text" id="course-name" required />
+					<input
+						type="text"
+						id="course-name"
+						placeholder="Enter course name"
+						required
+					/>
 
 					<label for="course-day">Day:</label>
 					<select id="course-day" required>
-            <option value="select">-- select --</option>
+						<option value="" disabled selected hidden style="color: grey">
+							Choose a day
+						</option>
 						<option value="Monday">Monday</option>
 						<option value="Tuesday">Tuesday</option>
 						<option value="Wednesday">Wednesday</option>
@@ -34,14 +41,48 @@
 					<input type="time" id="end-time" required />
 
 					<button type="submit">Add Course</button>
-					<button type="Delete">Delete Course</button>
 				</form>
 			</section>
 			<section>
-				<h2>Weekly Schedule</h2>
+				<h2 class="cen">Weekly Schedule</h2>
 				<div id="calendar" class="calendar"></div>
 			</section>
+
+			<!-- Modal for Deletion Confirmation -->
+			<div id="delete-modal" class="modal">
+				<div class="modal-content">
+					<p id="delete-message">
+						Are you sure you want to delete this course?
+					</p>
+					<button id="confirm-delete">Yes</button>
+					<button id="cancel-delete">No</button>
+				</div>
+			</div>
+
+			<!-- Modal for Editing a Schedule -->
+			<div id="edit-modal" class="modal">
+				<div class="modal-content">
+					<h3>Edit Schedule</h3>
+					<label for="edit-course-day">Change Day:</label>
+					<select id="edit-course-day" required>
+						<option value="Monday">Monday</option>
+						<option value="Tuesday">Tuesday</option>
+						<option value="Wednesday">Wednesday</option>
+						<option value="Thursday">Thursday</option>
+						<option value="Friday">Friday</option>
+					</select>
+
+					<label for="edit-start-time">Start Time:</label>
+					<input type="time" id="edit-start-time" required />
+
+					<label for="edit-end-time">End Time:</label>
+					<input type="time" id="edit-end-time" required />
+
+					<button id="save-edit">Save</button>
+					<button id="cancel-edit">Cancel</button>
+				</div>
+			</div>
 		</main>
-		<script src="js/script.js"></script>
+		<script src="/frontend/js/script.js"></script>
 	</body>
 </html>
