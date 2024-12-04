@@ -165,3 +165,32 @@ updateCalendar();
 document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("course-name").focus();
 });
+
+async function loadSchedule() {
+	try {
+		const response = await fetch("/backend/schedule.json");
+		const schedule = await response.json();
+		console.log(schedule);
+	} catch (error) {
+		console.error("Error loading schedule: ", error);
+	}
+}
+
+async function saveScheduleToServer(schedule) {
+	try {
+		const reponse = await fetch("/backend/schedule.json", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(schedule),
+		});
+		if (response.ok) {
+			alert("Schedule saved successfully");
+		} else {
+			alert("Failed to save schedule");
+		}
+	} catch (error) {
+		console.error("Error saving schedule: ", error);
+	}
+}

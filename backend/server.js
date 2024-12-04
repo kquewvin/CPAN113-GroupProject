@@ -1,50 +1,38 @@
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
-
+const bodyParser = require("body-parser");
 const app = express();
 const PORT = 3000;
 
-// Middleware to serve static files (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname)));
+// Parse JSON
+app.use(bodyParser.json());
 
-// Middleware to parse JSON data
-app.use(express.json());
+// Path to JSON file
+const scheduleFile = "schedule.json";
 
-// Endpoint to get JSON data
-app.get("/backend/courses", (req, res) => {
-	fs.readFile("./courses.json", "utf8", (err, data) => {
+// Serve the frontend files
+app.use(express.static("public"));
+
+// Endpoint to get JSON data (GET)
+app.get("/schedule", (req, res) => {
+	fs.readFile(scheduleFile, (err, data) => {
 		if (err) {
-			res.status(500).send("Error reading data file");
-			return;
+			return res.status(500).send("Error reading schedule file");
 		}
 		res.json(JSON.parse(data));
 	});
 });
 
-// Endpoint to save a new course
-app.post("/courses", (req, res) => {
-	const courseData = req.body;
+// Endpoint to save schedule to JSON (POST)
+app.post("/schedule", (req, res) => {
+	const schedule = req.body;
 
 	// Read the existing data
-	fs.readFile("/courses.json", "utf8", (err, data) => {
-		if (err && err.code !== "ENOENT") {
-			res.status(500).send("Error reading data file");
-			return;
+	fs.writeFileFile(scheduleFile, JSON.stringify(schedule, null, 2), (err) => {
+		if (err) {
+			return res.status(500).send("Error saving schedule file");
 		}
-
-		// Parse existing data or initialize as empty array
-		const courses = data ? JSON.parse(data) : [];
-		courses.push(courseData);
-
-		// Write the updated courses back to the file
-		fs.writeFile("/courses.json", JSON.stringify(courses, null, 2), (err) => {
-			if (err) {
-				res.status(500).send("Error writing to data file");
-				return;
-			}
-			res.status(200).send("Course saved successfully!");
-		});
+		res.send("Schedule saved successfully");
 	});
 });
 
