@@ -176,15 +176,17 @@ async function loadSchedule() {
 	}
 }
 
-async function saveScheduleToServer(schedule) {
+// Save to backend (POST)
+async function saveScheduleToServer() {
 	try {
-		const response = await fetch("/backend/schedule.json", {
+		const response = await fetch("http://localhost:3000/schedule", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(schedule), // sends the schedule data as a JSON string
 		});
+
 		if (response.ok) {
 			alert("Schedule saved successfully");
 		} else {
@@ -194,3 +196,7 @@ async function saveScheduleToServer(schedule) {
 		console.error("Error saving schedule: ", error);
 	}
 }
+
+document
+	.getElementById("save-schedule")
+	.addEventListener("click", saveScheduleToServer);

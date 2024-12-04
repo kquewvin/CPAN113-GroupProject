@@ -25,7 +25,7 @@ app.get("/schedule", (req, res) => {
 			res.json(schedule);
 		} catch (parseError) {
 			console.error("Error parsing JSON: ", parseError);
-			res.json(JSON.parse(data));
+			res.status(500).send("Error parsing schedule file")
 		}
 	});
 });
