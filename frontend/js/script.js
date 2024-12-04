@@ -178,12 +178,12 @@ async function loadSchedule() {
 
 async function saveScheduleToServer(schedule) {
 	try {
-		const reponse = await fetch("/backend/schedule.json", {
+		const response = await fetch("/backend/schedule.json", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(schedule),
+			body: JSON.stringify(schedule), // sends the schedule data as a JSON string
 		});
 		if (response.ok) {
 			alert("Schedule saved successfully");
